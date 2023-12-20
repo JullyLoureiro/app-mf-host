@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { lazy } from 'react';
+// import Example from "app2/App";
+// const Button = React.lazy(() => import('RemoteApp/Button')); 
+import { CssVarsProvider, defaultTheme, CssBaseline } from '@arquivei/atenas';
+const ApplicationLayout = lazy(() => import('remote:@arquivei/application-layout-web/ApplicationLayout'));
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App() {
+    return(
+        <div>
+            <CssVarsProvider theme={defaultTheme}>
+                <CssBaseline />
+                <ApplicationLayout
+                    bffUrl={'http://localhost:5001/bff-application-layout/graphql'}
+                    titlePage={'teste'}
+                >
+                <h1>Aplicação Host</h1>
+                </ApplicationLayout>
+            </CssVarsProvider>
+        </div>
+    )
 }
-
-export default App;
